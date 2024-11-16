@@ -23,20 +23,20 @@ public class UsersController {
     @GetMapping("/register")
     public String getRegisterPage(Model model) {
         model.addAttribute("registerRequest", UsersModel.createUsersModel());
-        return "register_page";
+        return "/register";
     }
 
     @GetMapping("/login")
     public String getLoginPage(Model model) {
         model.addAttribute("loginRequest", UsersModel.createUsersModel());
-        return "login_page";
+        return "/login";
     }
 
     @PostMapping("/register")
     public String register(@ModelAttribute UsersModel usersModel) {
         System.out.println("register request: " + usersModel);
         UsersModel registeredUser = usersService.registerUser(usersModel.getName(),usersModel.getSurname(),usersModel.getEmail(),usersModel.getPassword());
-        return registeredUser == null ? "error_page" : "redirect:/login";
+        return registeredUser == null ? "/error" : "redirect:/login";
     }
 
     @PostMapping("/login")
@@ -45,9 +45,9 @@ public class UsersController {
         UsersModel authenticated = usersService.authenticate(usersModel.getEmail(),usersModel.getPassword());
         if (authenticated != null) {
             model.addAttribute("userLogin", authenticated.getEmail());
-            return "personal_page";
+            return "/personal";
         }else{
-            return "error_page";
+            return "/error";
         }
     }
 }
