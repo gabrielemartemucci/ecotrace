@@ -1,0 +1,44 @@
+/* Font e colori globali */
+body {
+    font-family: 'Arial', sans-serif; /* Cambia font come preferisci */
+    color: hsl(113, 100%, 29%); /* Colore del testo principale */
+    background-color: #f0f0f0; /* Colore di sfondo della pagina */
+    margin: 20;
+    padding: 20;
+  }
+  
+  /* Colori e stili per pulsanti */
+  button {
+    color: hsl(113, 100%, 29%); /* Colore del testo principale */
+    color: white; /* Colore del testo del pulsante */
+    
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* Colore di sfondo del pulsante al passaggio del mouse */
+  }
+  
+  /* Titoli */
+  h1, h2, h3 {
+    font-family: 'Astron', Astrion;
+    color: #55bd00;
+  }
+  
+  /* Modifica l'aspetto dei form */
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  
