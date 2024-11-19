@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms'; // Importa FormsModule
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { HttpClientModule } from '@angular/common/http';
 
 // Definisci le rotte
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes), // Configura il routing
-    FormsModule // Configura FormsModule per ngModel
+    FormsModule, // Configura FormsModule per ngModel
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

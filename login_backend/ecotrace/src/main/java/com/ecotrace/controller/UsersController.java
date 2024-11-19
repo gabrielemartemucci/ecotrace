@@ -5,15 +5,16 @@ import com.ecotrace.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+
+import java.util.Map;
 
 @Controller
+@RequestMapping("/api/auth")
 public class UsersController {
 
     //@Autowired
-    //private UsersService usersService;
     private final UsersService usersService;
 
     public UsersController(UsersService usersService) {
@@ -32,22 +33,33 @@ public class UsersController {
         return "/login";
     }
 
-    @PostMapping("/register")
+    /*@PostMapping("/register")
     public String register(@ModelAttribute UsersModel usersModel) {
         System.out.println("register request: " + usersModel);
         UsersModel registeredUser = usersService.registerUser(usersModel.getName(),usersModel.getSurname(),usersModel.getEmail(),usersModel.getPassword());
         return registeredUser == null ? "/error" : "redirect:/login";
+    }*/
+
+    @PostMapping("/register")
+    public ResponseEntity<Map<String, String>> register(@RequestBody UsersModel usersModel) {
+        System.out.println("register request: " + usersModel);
+        UsersModel registeredUser = usersService.registerUser(usersModel.getName(), usersModel.getSurname(), usersModel.getEmail(), usersModel.getPassword());
+
+        if (registeredUser == null) {
+            return ResponseEntity.status(400).body(Map.of("message", "Errore nella registrazione: email già in uso o dati invalidi."));
+        }
+        return ResponseEntity.status(201).body(Map.of("message", "Registrazione riuscita"));
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute UsersModel usersModel, Model model) {
+    public ResponseEntity<Map<String, String>> login(@RequestBody UsersModel usersModel, Model model) {
         System.out.println("login request: " + usersModel);
         UsersModel authenticated = usersService.authenticate(usersModel.getEmail(),usersModel.getPassword());
         if (authenticated != null) {
             model.addAttribute("userLogin", authenticated.getEmail());
-            return "/personal";
+            return ResponseEntity.status(201).body(Map.of("message", "Login riuscito"));
         }else{
-            return "/error";
+            return ResponseEntity.status(400).body(Map.of("message", "Credenziali non valide"));
         }
     }
 }
