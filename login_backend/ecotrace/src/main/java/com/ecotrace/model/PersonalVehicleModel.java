@@ -13,7 +13,7 @@ public class PersonalVehicleModel {
     private Long id;
     private String name;
     private String type;
-    private float co2Emission;
+    private float co2_emission;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -31,8 +31,8 @@ public class PersonalVehicleModel {
         return type;
     }
 
-    public float getCo2Emission() {
-        return co2Emission;
+    public float getCo2_emission() {
+        return co2_emission;
     }
 
     public UsersModel getUser() {
@@ -51,8 +51,8 @@ public class PersonalVehicleModel {
         this.type = type;
     }
 
-    public void setCo2Emission(float co2Emission) {
-        this.co2Emission = co2Emission;
+    public void setCo2Emission(float co2_emission) {
+        this.co2_emission = co2_emission;
     }
 
     public void setUser(UsersModel user) {

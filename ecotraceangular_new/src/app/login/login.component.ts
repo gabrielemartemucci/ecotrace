@@ -2,6 +2,7 @@
 
 import { Component } from '@angular/core';
 import { AuthService } from '../authservice';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-    constructor(private authService: AuthService) {}
+    constructor(private authService: AuthService, private router: Router) {}
 
     onLogin() {
       this.authService.login({ email: this.email, password: this.password }).subscribe(
@@ -21,6 +22,7 @@ export class LoginComponent {
           localStorage.setItem('user', JSON.stringify(response.user))
           localStorage.setItem('vehicles', JSON.stringify(response.personalVehicles));
           alert(response.message || 'Login riuscito');
+          this.router.navigate(['/home']);
         },
         error => {
           console.error('Login fallito', error);
