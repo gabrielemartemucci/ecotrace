@@ -1,1 +1,17 @@
-<p>home works!</p>
+<!-- src/app/home/home.component.html -->
+
+<div class="home-container">
+  <h1>Benvenuto, {{ user.name || 'utente' }}!</h1>
+  <p>Email: {{ user.email || 'Non disponibile' }}</p>
+
+  <h2>I tuoi veicoli:</h2>
+  <ul>
+    <li *ngFor="let vehicle of vehicles">{{ vehicle.name || 'Nome veicolo non disponibile' }}</li>
+  </ul>
+
+  <!-- Pulsante per registrare una nuova attività -->
+  <button (click)="onRegisterActivity()">Registra attività</button>
+
+  <!-- Pulsante per visualizzare il profilo -->
+  <button (click)="onProfile()">Profilo</button>
+</div>

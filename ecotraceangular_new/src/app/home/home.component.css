@@ -1,0 +1,29 @@
+/* home.component.css */
+
+.home-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .charts {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .chart {
+    width: 30%;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
