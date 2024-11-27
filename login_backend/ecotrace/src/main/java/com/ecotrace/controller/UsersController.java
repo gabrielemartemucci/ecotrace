@@ -52,12 +52,13 @@ public class UsersController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String, String>> login(@RequestBody UsersModel usersModel, Model model) {
+    public ResponseEntity<?> login(@RequestBody UsersModel usersModel, Model model) {
         System.out.println("login request: " + usersModel);
         UsersModel authenticated = usersService.authenticate(usersModel.getEmail(),usersModel.getPassword());
         if (authenticated != null) {
             model.addAttribute("userLogin", authenticated.getEmail());
-            return ResponseEntity.status(201).body(Map.of("message", "Login riuscito"));
+            Map<String, Object> userData = usersService.getUserAndVehicles(authenticated.getEmail());
+            return ResponseEntity.ok(userData);
         }else{
             return ResponseEntity.status(400).body(Map.of("message", "Credenziali non valide"));
         }

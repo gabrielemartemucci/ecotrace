@@ -18,6 +18,8 @@ export class LoginComponent {
       this.authService.login({ email: this.email, password: this.password }).subscribe(
         response => {
           console.log('Login con successo', response);
+          localStorage.setItem('user', JSON.stringify(response.user))
+          localStorage.setItem('vehicles', JSON.stringify(response.personalVehicles));
           alert(response.message || 'Login riuscito');
         },
         error => {
