@@ -9,13 +9,19 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';  // Importa HomeComponent
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { VehiclesComponent } from './vehicles/vehicles.component';
 
 // Definisci le rotte
 const routes: Routes = [
   { path: '', component: LoginComponent },  // La rotta principale che porta al login
   { path: 'register', component: RegisterComponent },  // La rotta per la registrazione
   { path: 'home', component: HomeComponent },  // Aggiungi la rotta per la home
-  { path: '**', redirectTo: '' }  // Redirect per qualsiasi altra rotta non definita, manda all'home (login)
+  { path: '**', redirectTo: '' },  // Redirect per qualsiasi altra rotta non definita, manda all'home (login)
+  { path: 'profile', component: UserProfileComponent }, // Profilo dell'utente
+  { path: 'vehicles', component: VehiclesComponent },  // Aggiungi la rotta per i veicoli
+  
+  
 ];
 
 @NgModule({
@@ -23,7 +29,9 @@ const routes: Routes = [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent,  // Assicurati che HomeComponent sia dichiarato
+    HomeComponent,
+    UserProfileComponent,
+    VehiclesComponent // Assicurati che HomeComponent sia dichiarato
   ],
   imports: [
     BrowserModule,

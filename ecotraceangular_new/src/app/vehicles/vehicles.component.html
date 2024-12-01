@@ -1,0 +1,13 @@
+<!-- src/app/vehicles/vehicles.component.html -->
+<div>
+    <h2>Veicoli personali</h2>
+    <ul *ngIf="vehicles.length > 0; else noVehicles">
+      <li *ngFor="let vehicle of vehicles">{{ vehicle.model }} - {{ vehicle.year }}</li>
+    </ul>
+    <ng-template #noVehicles>
+      <p>Nessun veicolo aggiunto.</p>
+    </ng-template>
+  
+    <button (click)="goBack()">Torna indietro</button>
+  </div>
+  

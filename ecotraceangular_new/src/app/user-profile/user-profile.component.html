@@ -1,0 +1,11 @@
+<!-- src/app/user-profile/user-profile.component.html -->
+<div class="profile-container">
+    <h1>Profilo Utente</h1>
+    <p><strong>Nome:</strong> {{ user.name }}</p>
+    <p><strong>Cognome:</strong> {{ user.surname }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <button (click)="goBack()">Torna indietro</button>
+
+    <button (click)="goToVehicles()">Veicoli Personali</button>
+  </div>
+  
