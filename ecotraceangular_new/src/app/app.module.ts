@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: '', component: LoginComponent },  // La rotta principale che porta al login
   { path: 'register', component: RegisterComponent },  // La rotta per la registrazione
   { path: 'home', component: HomeComponent },  // Aggiungi la rotta per la home
-  { path: '**', redirectTo: '' },  // Redirect per qualsiasi altra rotta non definita, manda all'home (login)
+  { path: '**', redirectTo: localStorage.getItem('user') ? '/home' : '' },
   { path: 'profile', component: UserProfileComponent }, // Profilo dell'utente
   { path: 'vehicles', component: VehiclesComponent },  // Aggiungi la rotta per i veicoli
   
