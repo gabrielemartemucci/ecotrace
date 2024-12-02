@@ -20,10 +20,10 @@ public class PersonalVehicleController {
     private UsersService userService;
 
     @PostMapping("/add")
-    public ResponseEntity<?> addVehicle(@RequestBody PersonalVehicleModel vehicle, @RequestParam String email) {
-        System.out.println("Email ricevuta nella richiesta: " + email); // Log dell'email ricevuta
+    public ResponseEntity<?> addVehicle(@RequestBody PersonalVehicleModel vehicle, @RequestParam Integer id) {
+        System.out.println("Email ricevuta nella richiesta: " + id); // Log dell'email ricevuta
         try {
-            Map<String, Object> userAndVehicles = userService.getUserAndVehicles(email);
+            Map<String, Object> userAndVehicles = userService.getUserAndVehicles(id);
             UsersModel user = (UsersModel) ((Map<?, ?>) userAndVehicles).get("user");
             vehicle.setUser(user);
             PersonalVehicleModel savedVehicle = vehicleService.addVehicle(vehicle);

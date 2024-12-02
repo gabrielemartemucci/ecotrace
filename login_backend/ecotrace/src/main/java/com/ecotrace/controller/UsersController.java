@@ -57,7 +57,7 @@ public class UsersController {
         UsersModel authenticated = usersService.authenticate(usersModel.getEmail(),usersModel.getPassword());
         if (authenticated != null) {
             model.addAttribute("userLogin", authenticated.getEmail());
-            Map<String, Object> userData = usersService.getUserAndVehicles(authenticated.getEmail());
+            Map<String, Object> userData = usersService.getUserAndVehicles(authenticated.getId());
             return ResponseEntity.ok(userData);
         }else{
             return ResponseEntity.status(400).body(Map.of("message", "Credenziali non valide"));

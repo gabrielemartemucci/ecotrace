@@ -45,8 +45,8 @@ public class UsersService {
         return usersRepository.findByEmailAndPassword(email, password).orElse(null);
     }
 
-    public Map<String, Object> getUserAndVehicles(String email) {
-        Optional<UsersModel> user = usersRepository.findByEmail(email);
+    public Map<String, Object> getUserAndVehicles(Integer id) {
+        Optional<UsersModel> user = usersRepository.findById(id);
         if (user.isPresent()) {
             List<PersonalVehicleModel> vehicles = personalVehicleRepository.findByUserId((long) user.get().getId());
 
