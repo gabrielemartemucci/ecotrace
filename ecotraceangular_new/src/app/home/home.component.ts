@@ -21,6 +21,8 @@ export class HomeComponent implements OnInit {
 
     // Recupera i veicoli dell'utente dal localStorage
     this.vehicles = JSON.parse(localStorage.getItem('vehicles') || '[]');
+    console.log('Ciao');
+    console.log('Dati veicoli recuperati:', this.vehicles);
 
   }
 
@@ -35,7 +37,6 @@ export class HomeComponent implements OnInit {
    // console.log(this.user); // Aggiungi un log per vedere cosa contiene l'oggetto user
     console.log('Dati utente per navigazione:', this.user);
     if (this.user && this.user.name && this.user.email) {
-      console.log('Prova');
       this.router.navigate(['/profile']);
     } else {
       this.router.navigate(['/']); // Reindirizza al login se l'utente non è autenticato
@@ -44,5 +45,9 @@ export class HomeComponent implements OnInit {
 //metodo per la navigazione nei veicoli
   onVehicles() {
     this.router.navigate(['/vehicles']);
+  }
+
+  onCO2(): void {
+    this.router.navigate(['/co2']);
   }
 }

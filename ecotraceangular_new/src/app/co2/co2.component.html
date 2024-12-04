@@ -1,0 +1,75 @@
+<div class="container">
+  <!-- Sezione Veicoli Personali -->
+  <div class="section">
+    <div class="checkbox-group">
+      <input type="checkbox" id="personalVehicles" [(ngModel)]="personalVehiclesChecked" [disabled]="!hasPersonalVehicles" />
+      <label for="personalVehicles">Hai utilizzato dei veicoli personali?</label>
+    </div>
+    <span class="message" *ngIf="!hasPersonalVehicles">Nessun veicolo personale registrato</span>
+
+    <div class="dynamic-fields" *ngIf="personalVehiclesChecked">
+      <div *ngFor="let vehicle of selectedPersonalVehicles; let i = index" class="field-group">
+        <select [(ngModel)]="selectedPersonalVehicles[i].personalVehicleId" [ngModelOptions]="{standalone: true}" class="select">
+          <option *ngFor="let v of personalVehicles" [value]="v.id">{{ v.name }}</option>
+        </select>
+        <input type="number" [(ngModel)]="vehicle.kilometers" placeholder="Km percorsi" class="input-field" />
+        <button type="button" class="btn-remove" (click)="removePersonalVehicle(i)">🗑️</button>
+      </div>
+      <button type="button" class="btn-add" (click)="addPersonalVehicle()">➕</button>
+    </div>
+  </div>
+
+  <!-- Sezione Trasporti -->
+  <div class="section">
+    <div class="checkbox-group">
+      <input type="checkbox" id="transport" [(ngModel)]="transportChecked" />
+      <label for="transport">Hai utilizzato dei mezzi non personali per spostarti?</label>
+    </div>
+
+    <div class="dynamic-fields" *ngIf="transportChecked">
+      <div *ngFor="let transport of selectedTransports; let i = index" class="field-group">
+        <select [(ngModel)]="selectedTransports[i].transportId" [ngModelOptions]="{standalone: true}" class="select">
+          <option *ngFor="let t of transports" [value]="t.id">{{ t.factor }}</option>
+        </select>
+        <input type="number" [(ngModel)]="transport.kilometers" placeholder="Km percorsi" class="input-field" />
+        <button type="button" class="btn-remove" (click)="removeTransport(i)">🗑️</button>
+      </div>
+      <button type="button" class="btn-add" (click)="addTransport()">➕</button>
+    </div>
+  </div>
+
+  <!-- Sezione Energia -->
+  <div class="section">
+    <div class="checkbox-group">
+      <input type="checkbox" id="energy" [(ngModel)]="energyChecked" />
+      <label for="energy">Hai consumato energia elettrica?</label>
+    </div>
+
+    <div class="dynamic-fields" *ngIf="energyChecked">
+      <input type="number" [(ngModel)]="energyConsumption" placeholder="kWh consumati" class="input-field" />
+    </div>
+  </div>
+
+  <!-- Sezione Cibo -->
+  <div class="section">
+    <div class="checkbox-group">
+      <input type="checkbox" id="food" [(ngModel)]="foodChecked" />
+      <label for="food">Hai mangiato?</label>
+    </div>
+
+    <div class="dynamic-fields" *ngIf="foodChecked">
+      <div *ngFor="let foodEntry of selectedFood; let i = index" class="field-group">
+        <select [(ngModel)]="selectedFood[i].foodId" [ngModelOptions]="{standalone: true}" class="select">
+          <option *ngFor="let f of food" [value]="f.id">{{ f.factor }}</option>
+        </select>
+        <input type="number" [(ngModel)]="foodEntry.quantity" placeholder="Kg consumati" class="input-field" />
+        <button type="button" class="btn-remove" (click)="removeFood(i)">🗑️</button>
+      </div>
+      <button type="button" class="btn-add" (click)="addFood()">➕</button>
+    </div>
+  </div>
+
+  <!-- Pulsante Invia -->
+  <button class="btn-submit" (click)="submitData()">Invia</button>
+</div>
+

@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';  // Importa HomeComponent
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { VehiclesComponent } from './vehicles/vehicles.component';
+import {Co2Component} from "./co2/co2.component";
 
 // Definisci le rotte
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },  // Aggiungi la rotta per la home
   { path: 'profile', component: UserProfileComponent }, // Profilo dell'utente
   { path: 'vehicles', component: VehiclesComponent },  // Aggiungi la rotta per i veicoli
+  { path: 'co2', component: Co2Component },
   { path: '**', redirectTo: localStorage.getItem('user') ? '/home' : '' },
 
 

@@ -1,0 +1,162 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #eaf9e5; /* Verde chiaro */
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-group label {
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  font-size: 25px;
+  font-weight: bold;
+  color: #27ae60; /* Verde */
+  margin-bottom: 0.5rem;
+  user-select: none;
+}
+
+.checkbox-group label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #27ae60;
+  border-radius: 4px;
+  background-color: white;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.checkbox-group input[type="checkbox"]:checked + label::before {
+  background-color: #27ae60;
+  border-color: #27ae60;
+}
+
+.checkbox-group input[type="checkbox"]:checked + label::after {
+  content: '✔';
+  position: absolute;
+  left: 4px;
+  top: -2px;
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+}
+
+.message {
+  color: #ff6b6b;
+  font-size: 1rem;
+  margin-left: 1.5rem;
+}
+
+.dynamic-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.select, .input-field {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #27ae60;
+  font-size: 1rem;
+  color: #333;
+  background-color: #ecf8f2;
+  transition: border 0.3s, background-color 0.3s;
+  width: 100%;
+}
+
+.select {
+  max-width: 220px;
+}
+
+.input-field {
+  max-width: 150px;
+}
+
+.select:focus, .input-field:focus {
+  border-color: #1abc9c;
+  background-color: #daf7e2;
+}
+
+.btn-add, .btn-remove {
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-add {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+}
+
+.btn-remove {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+}
+
+.btn-add:hover {
+  background-color: #2ecc71;
+}
+
+.btn-remove:hover {
+  background-color: #e74c3c;
+}
+
+.btn-submit {
+  background-color: #27ae60;
+  color: white;
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  display: block;
+  margin: 2rem auto 0;
+  border: none;
+  transition: background-color 0.3s;
+}
+
+.btn-submit:hover {
+  background-color: #2ecc71;
+}
+
+.btn-submit:active {
+  background-color: #16a085;
+}
+
