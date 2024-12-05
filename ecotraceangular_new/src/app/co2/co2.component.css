@@ -1,16 +1,22 @@
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #eaf9e5; /* Verde chiaro */
+  font-family: 'Montserrat', sans-serif;
+  background-color: #6eff3c; /* Verde chiaro */
   color: #333;
   margin: 0;
   padding: 0;
 }
 
+.title {
+  font-size: 50px;
+  font-weight: bold;
+  color: #27ae60; /* Verde */
+}
+
 .container {
-  max-width: 800px;
+  max-width: 475px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: #4CAF50;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -33,9 +39,9 @@ body {
   position: relative;
   padding-left: 35px;
   cursor: pointer;
-  font-size: 25px;
+  font-size: 17px;
   font-weight: bold;
-  color: #27ae60; /* Verde */
+  color: #ffffff; /* Verde */
   margin-bottom: 0.5rem;
   user-select: none;
 }
@@ -47,15 +53,15 @@ body {
   top: 0;
   width: 20px;
   height: 20px;
-  border: 2px solid #27ae60;
+  border: 2px solid #eeead9;
   border-radius: 4px;
-  background-color: white;
+  background-color: #eeead9;
   transition: background-color 0.3s, border-color 0.3s;
 }
 
 .checkbox-group input[type="checkbox"]:checked + label::before {
-  background-color: #27ae60;
-  border-color: #27ae60;
+  background-color: #d3cd97;
+  border-color: #d3cd97;
 }
 
 .checkbox-group input[type="checkbox"]:checked + label::after {
@@ -64,7 +70,7 @@ body {
   left: 4px;
   top: -2px;
   font-size: 18px;
-  color: white;
+  color: #4CAF50;
   font-weight: bold;
 }
 
@@ -89,11 +95,13 @@ body {
 .select, .input-field {
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #27ae60;
+  border: 1px solid #eeead9;
   font-size: 1rem;
   color: #333;
-  background-color: #ecf8f2;
+  background-color: #eeead9;
   transition: border 0.3s, background-color 0.3s;
+  margin: 0;
+  line-height: normal;
   width: 100%;
 }
 
@@ -106,8 +114,8 @@ body {
 }
 
 .select:focus, .input-field:focus {
-  border-color: #1abc9c;
-  background-color: #daf7e2;
+  border-color: #eeead9;
+  background-color: #eeead9;
 }
 
 .btn-add, .btn-remove {
@@ -119,9 +127,11 @@ body {
 }
 
 .btn-add {
-  background-color: #27ae60;
+  background-color: #eeead9;
   color: white;
   border: none;
+  width: 100%;
+  max-width: 50px;
 }
 
 .btn-remove {
@@ -131,7 +141,7 @@ body {
 }
 
 .btn-add:hover {
-  background-color: #2ecc71;
+  background-color: #d3cd97;
 }
 
 .btn-remove:hover {
@@ -139,8 +149,8 @@ body {
 }
 
 .btn-submit {
-  background-color: #27ae60;
-  color: white;
+  background-color: #eeead9;
+  color: #4CAF50;
   padding: 15px 30px;
   font-size: 1.2rem;
   font-weight: bold;
@@ -153,10 +163,10 @@ body {
 }
 
 .btn-submit:hover {
-  background-color: #2ecc71;
+  background-color: #d3cd97;
 }
 
 .btn-submit:active {
-  background-color: #16a085;
+  background-color: #eeead9;
 }
 

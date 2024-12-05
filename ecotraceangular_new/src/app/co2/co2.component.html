@@ -1,3 +1,8 @@
+<div align="center" class="section">
+  <div class="title">
+  Calcola la tua CO2!
+  </div>
+</div>
 <div class="container">
   <!-- Sezione Veicoli Personali -->
   <div class="section">
@@ -10,7 +15,7 @@
     <div class="dynamic-fields" *ngIf="personalVehiclesChecked">
       <div *ngFor="let vehicle of selectedPersonalVehicles; let i = index" class="field-group">
         <select [(ngModel)]="selectedPersonalVehicles[i].personalVehicleId" [ngModelOptions]="{standalone: true}" class="select">
-          <option *ngFor="let v of personalVehicles" [value]="v.id">{{ v.name }}</option>
+              <option *ngFor="let v of personalVehicles" [value]="v.id">{{ v.name }}</option>
         </select>
         <input type="number" [(ngModel)]="vehicle.kilometers" placeholder="Km percorsi" class="input-field" />
         <button type="button" class="btn-remove" (click)="removePersonalVehicle(i)">🗑️</button>
@@ -70,6 +75,5 @@
   </div>
 
   <!-- Pulsante Invia -->
-  <button class="btn-submit" (click)="submitData()">Invia</button>
+  <button class="btn-submit" (click)="submitData()">Calcola la CO2!</button>
 </div>
-
