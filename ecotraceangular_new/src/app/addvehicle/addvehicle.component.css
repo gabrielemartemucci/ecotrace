@@ -1,0 +1,32 @@
+/* Aggiungi margine sopra e sotto ogni div per separare gli elementi */
+div {
+    margin-bottom: 20px;
+  }
+  
+  /* Allinea le etichette e i campi di input in modo che siano separati e ben allineati */
+  label {
+    display: inline-block;
+    width: 150px; /* Puoi regolare la larghezza delle etichette */
+    margin-right: 10px; /* Spazio tra etichetta e campo di input */
+  }
+  
+  input, select {
+    width: 200px; /* Regola la larghezza dei campi input */
+    padding: 8px; /* Spazio interno per i campi */
+    border: 1px solid #ccc; /* Bordo grigio chiaro per i campi */
+    border-radius: 4px; /* Bordo arrotondato */
+  }
+  
+  button {
+    margin-top: 20px; /* Spazio sopra il bottone */
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Colore di sfondo verde */
+    color: white; /* Colore del testo bianco */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049; /* Colore verde scuro al passaggio del mouse */
+  }  
