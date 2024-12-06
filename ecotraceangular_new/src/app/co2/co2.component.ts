@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FactorsService } from '../factorsservice';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from "@angular/forms";
+import {EmissionService}  from "../emissionservice";
 
 
 @Component({
@@ -19,14 +20,14 @@ export class Co2Component {
   transports: any[] = [];
   food: any[] = [];
   energy: any[] = [];
-  personalVehicles: any;
+  personalVehicles: any[] = [];
   hasPersonalVehicles = false;
-  energyConsumption = 0;
+  energyConsumption = null;
   selectedPersonalVehicles: { personalVehicleId: number | null, kilometers: number | null} [] = [];
   selectedTransports: { transportId: number | null, kilometers: number | null} [] = [];
   selectedFood: { foodId: number | null, quantity: number | null} [] = [];
 
-  constructor(private factorService: FactorsService) {}
+  constructor(private factorService: FactorsService, private emissionService: EmissionService) {}
 
   ngOnInit(): void {
     this.loadTransports();
@@ -97,11 +98,24 @@ export class Co2Component {
 
   submitData() {
     const data = {
-      personalVehicles: this.personalVehicles,
-      transports: this.transports,
-      energyConsumption: this.energyChecked ? this.energyConsumption : 0,
-      food: this.food,
+      personalVehicles: this.selectedPersonalVehicles.map(vehicle => ({
+        vehicleId: Number(vehicle.personalVehicleId),
+        kilometers: Number(vehicle.kilometers)
+    })),
+      transports: this.selectedTransports.map(transport => ({
+        transportId: Number(transport.transportId),
+        kilometers: Number(transport.kilometers)
+      })),
+      food: this.selectedFood.map(foodEntry => ({
+        foodId: Number(foodEntry.foodId),
+        quantity: Number(foodEntry.quantity)
+      })),
+      energy: this.energyChecked ? Number(this.energyConsumption) : 0,
     };
-    console.log('Dati inviati al backend:', data);
+    console.log('Dati inviati:', data);
+    this.emissionService.calculateEmissions(data).subscribe((response: any) => {
+      console.log('Total Emissions:', response.totalEmissions);
+      alert(`Totale emissioni calcolate: ${response.totalEmissions} g CO2`);
+    });
   }
 }
