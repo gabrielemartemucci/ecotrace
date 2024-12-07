@@ -1,0 +1,26 @@
+<div>
+    <h2>Aggiungi un veicolo</h2>
+    <form (ngSubmit)="submitForm()">
+      <div>
+        <label for="vehicleName">Nome veicolo:</label>
+        <input type="text" id="vehicleName" [(ngModel)]="vehicleName" name="vehicleName" required>
+      </div>
+  
+      <div>
+
+
+        <label for="vehicleType">Tipologia:   </label>
+        <select id="vehicleType" [(ngModel)]="vehicleType" name="vehicleType" required>
+          <option *ngFor="let type of vehicleTypes" [value]="type">{{ type }}</option>
+        </select>
+      </div>
+  
+      <div>
+        <label for="co2Emission">Emissione CO2:</label>
+        <input type="number" id="co2Emission" [(ngModel)]="co2Emission" name="co2Emission" required>
+      </div>
+  
+      <button type="submit">Conferma</button>
+
+    </form>
+  </div>

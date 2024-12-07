@@ -5,9 +5,10 @@
       <li *ngFor="let vehicle of vehicles">{{ vehicle.model }} - {{ vehicle.year }}</li>
     </ul>
     <ng-template #noVehicles>
-      <p>Nessun veicolo aggiunto.</p>
+      <p>Ecco i tuoi veicoli!</p>
     </ng-template>
-  
+    <button (click)="goToAddvehicle()">Aggiungi Veicolo</button>
+
     <button (click)="goBack()">Torna indietro</button>
   </div>
   

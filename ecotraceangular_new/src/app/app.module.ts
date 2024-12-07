@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';  // Importa HomeComponent
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import {Co2Component} from "./co2/co2.component";
+import {AddvehicleComponent} from "./addvehicle/addvehicle.component";
 
 // Definisci le rotte
 const routes: Routes = [
@@ -21,6 +22,8 @@ const routes: Routes = [
   { path: 'profile', component: UserProfileComponent }, // Profilo dell'utente
   { path: 'vehicles', component: VehiclesComponent },  // Aggiungi la rotta per i veicoli
   { path: 'co2', component: Co2Component },
+  { path: 'addvehicle', component: AddvehicleComponent }, //rotta per aggiungere il veicolo
+
   { path: '**', redirectTo: localStorage.getItem('user') ? '/home' : '' },
 
 
@@ -33,7 +36,8 @@ const routes: Routes = [
     RegisterComponent,
     HomeComponent,
     UserProfileComponent,
-    VehiclesComponent // Assicurati che HomeComponent sia dichiarato
+    VehiclesComponent, // Assicurati che HomeComponent sia dichiarato
+    AddvehicleComponent,
   ],
   imports: [
     BrowserModule,
