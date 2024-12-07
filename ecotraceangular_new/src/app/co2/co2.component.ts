@@ -3,6 +3,8 @@ import { FactorsService } from '../factorsservice';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from "@angular/forms";
 import {EmissionService}  from "../emissionservice";
+import Swal from 'sweetalert2';
+
 
 
 @Component({
@@ -114,8 +116,55 @@ export class Co2Component {
     };
     console.log('Dati inviati:', data);
     this.emissionService.calculateEmissions(data).subscribe((response: any) => {
-      console.log('Total Emissions:', response.totalEmissions);
-      alert(`Totale emissioni calcolate: ${response.totalEmissions} g CO2`);
+      console.log('Total Emissions:', response.response.totalEmissions);
+      let message = '';
+      for (const transport of this.selectedTransports) {
+        const transportId = transport.transportId;
+        const kilometres = transport.kilometers;
+        if ((transportId == 5 || transportId == 6 || transportId == 7 || transportId == 8 || transportId == 9 || transportId == 12 || transportId == 14 || transportId == 15 || transportId == 16) && (kilometres == null || kilometres <= 1))
+          message += response.suggestions[0].suggestion + '\n';
+        if ((transportId == 5 || transportId == 8) && (kilometres == null || kilometres >= 5))
+          message += response.suggestions[1].suggestion + '\n';
+        if (transportId == 10 || transportId == 11 || transportId == 15 || transportId == 16)
+          message += response.suggestions[2].suggestion + '\n';
+        if (transportId == 12 || transportId == 13 || transportId == 14)
+          message += response.suggestions[3].suggestion + '\n';
+        if (transportId == 17)
+          message += response.suggestions[4].suggestion + '\n';
+        if (transportId == 18 || transportId == 19)
+          message += response.suggestions[5].suggestion + '\n';
+        if (transportId == 20)
+          message += response.suggestions[6].suggestion + '\n';
+        if (transportId == 21)
+          message += response.suggestions[7].suggestion + '\n';
+        if (transportId == 22)
+          message += response.suggestions[8].suggestion + '\n';
+        if (transportId == 23)
+          message += response.suggestions[9].suggestions + '\n';
+      }
+      if ( this.energyChecked ? Number(this.energyConsumption) : 0 >= 8)
+        message += response.suggestions[10].suggestion + '\n';
+      for (const food of this.selectedFood) {
+        const foodId = food.foodId;
+        const quantity = food.quantity;
+        if (foodId == 25 || foodId == 26)
+          message += response.suggestions[11].suggestion + '\n';
+        if (foodId == 32)
+          message += response.suggestions[12].suggestion + '\n';
+        if (foodId == 45)
+          message += response.suggestions[13].suggestion + '\n';
+      }
+      //alert(`Totale emissioni calcolate: ${response.response.totalEmissions} g CO2. \n\n${message}`)
+      Swal.fire({
+        title: 'Totale emissioni calcolate',
+        html: `
+        <p><strong>${response.response.totalEmissions} g CO2</strong></p>
+        <p><br><br><em>Suggerimenti:</em><br> ${message}</p>
+      `,
+        icon: 'info',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#4CAF50'
+      });
     });
   }
 }
