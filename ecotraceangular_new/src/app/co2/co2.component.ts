@@ -23,6 +23,7 @@ export class Co2Component {
   food: any[] = [];
   energy: any[] = [];
   personalVehicles: any[] = [];
+  user: any;
   hasPersonalVehicles = false;
   energyConsumption = null;
   selectedPersonalVehicles: { personalVehicleId: number | null, kilometers: number | null} [] = [];
@@ -35,6 +36,7 @@ export class Co2Component {
     this.loadTransports();
     this.loadFood();
     this.loadEnergy();
+    this.user = JSON.parse(localStorage.getItem('user') || '{}');
     this.personalVehicles = JSON.parse(localStorage.getItem('vehicles') || '[]');
     console.log('Dati veicoli recuperati:', this.personalVehicles);
     this.hasPersonalVehicles = this.personalVehicles.length > 0;
@@ -115,44 +117,45 @@ export class Co2Component {
       energy: this.energyChecked ? Number(this.energyConsumption) : 0,
     };
     console.log('Dati inviati:', data);
-    this.emissionService.calculateEmissions(data).subscribe((response: any) => {
+    console.log('Utente:', this.user.id);
+    this.emissionService.calculateEmissions({data: data, id: this.user.id}).subscribe((response: any) => {
       console.log('Total Emissions:', response.response.totalEmissions);
       let message = '';
       for (const transport of this.selectedTransports) {
         const transportId = transport.transportId;
         const kilometres = transport.kilometers;
         if ((transportId == 5 || transportId == 6 || transportId == 7 || transportId == 8 || transportId == 9 || transportId == 12 || transportId == 14 || transportId == 15 || transportId == 16) && (kilometres == null || kilometres <= 1))
-          message += response.suggestions[0].suggestion + '\n';
+          message += response.suggestions[0].suggestion + '<br>';
         if ((transportId == 5 || transportId == 8) && (kilometres == null || kilometres >= 5))
-          message += response.suggestions[1].suggestion + '\n';
+          message += response.suggestions[1].suggestion + '<br>';
         if (transportId == 10 || transportId == 11 || transportId == 15 || transportId == 16)
-          message += response.suggestions[2].suggestion + '\n';
+          message += response.suggestions[2].suggestion + '<br>';
         if (transportId == 12 || transportId == 13 || transportId == 14)
-          message += response.suggestions[3].suggestion + '\n';
+          message += response.suggestions[3].suggestion + '<br>';
         if (transportId == 17)
-          message += response.suggestions[4].suggestion + '\n';
+          message += response.suggestions[4].suggestion + '<br>';
         if (transportId == 18 || transportId == 19)
-          message += response.suggestions[5].suggestion + '\n';
+          message += response.suggestions[5].suggestion + '<br>';
         if (transportId == 20)
-          message += response.suggestions[6].suggestion + '\n';
+          message += response.suggestions[6].suggestion + '<br>';
         if (transportId == 21)
-          message += response.suggestions[7].suggestion + '\n';
+          message += response.suggestions[7].suggestion + '<br>';
         if (transportId == 22)
-          message += response.suggestions[8].suggestion + '\n';
+          message += response.suggestions[8].suggestion + '<br>';
         if (transportId == 23)
-          message += response.suggestions[9].suggestions + '\n';
+          message += response.suggestions[9].suggestions + '<br>';
       }
       if ( this.energyChecked ? Number(this.energyConsumption) : 0 >= 8)
-        message += response.suggestions[10].suggestion + '\n';
+        message += response.suggestions[10].suggestion + '<br>';
       for (const food of this.selectedFood) {
         const foodId = food.foodId;
         const quantity = food.quantity;
         if (foodId == 25 || foodId == 26)
-          message += response.suggestions[11].suggestion + '\n';
+          message += response.suggestions[11].suggestion + '<br>';
         if (foodId == 32)
-          message += response.suggestions[12].suggestion + '\n';
+          message += response.suggestions[12].suggestion + '<br>';
         if (foodId == 45)
-          message += response.suggestions[13].suggestion + '\n';
+          message += response.suggestions[13].suggestion + '<br>';
       }
       //alert(`Totale emissioni calcolate: ${response.response.totalEmissions} g CO2. \n\n${message}`)
       Swal.fire({

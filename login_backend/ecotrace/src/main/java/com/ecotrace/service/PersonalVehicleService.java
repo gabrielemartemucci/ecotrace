@@ -1,5 +1,6 @@
 package com.ecotrace.service;
 import com.ecotrace.model.PersonalVehicleModel;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import com.ecotrace.repository.PersonalVehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,5 +14,12 @@ public class PersonalVehicleService {
     public PersonalVehicleModel addVehicle(PersonalVehicleModel vehicle)
     {
         return vehicleRepository.save(vehicle);
+    }
+
+    public void deleteVehicleById(Long id) {
+        if (!vehicleRepository.existsById(id)) {
+            throw new EntityNotFoundException("Veicolo con ID" + id + "non trovato");
+        }
+        vehicleRepository.deleteById(id);
     }
 }

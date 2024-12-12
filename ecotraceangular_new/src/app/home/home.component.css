@@ -1,43 +1,71 @@
-/* src/app/home/home.component.css */
 :host {
   font-family: 'Montserrat', sans-serif;
 }
 
 .home-container {
+  max-width: 600px;
+  margin: 0 auto;
   text-align: center;
   padding: 20px;
+  background-color: #3f7501;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
 }
 
-h1 {
-  color: #4CAF50;
+h1, h2 {
+  font-family: 'Montserrat', sans-serif;
+  color: #eeead9;
 }
 
-h2 {
-  color: #4CAF50;
+.user-info {
+  font-size: 1rem;
+  margin-bottom: 20px;
 }
 
-ul {
+.vehicles-list {
   list-style-type: none;
   padding: 0;
 }
 
-ul li {
-  background-color: #f1f1f1;
+.vehicles-list li {
+  background-color: #d3cd97;
   margin: 10px 0;
   padding: 10px;
   border-radius: 15px;
+  color: #333;
 }
 
-button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
+.button-group {
+  margin-top: 20px;
+}
+
+.logout {
   padding: 10px 20px;
-  margin: 10px;
-  border-radius: 15px;
+  color: #eeead9;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
+  margin: 5px;
+  background-color: #dc3545;
 }
 
-button:hover {
-  background-color: #45a049;
+.logout:hover {
+  background-color: #e74c3c;
+}
+
+.btn-action {
+  padding: 10px 20px;
+  background-color: #eeead9;
+  color: #3f7501;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.btn-action:hover {
+  background-color: #d3cd97;
 }

@@ -16,6 +16,10 @@ export class LoginComponent {
   // Inietta sia il servizio di autenticazione che il router per navigare
   constructor(private authService: AuthService, private router: Router) {}
 
+  onRegister() {
+    this.router.navigate(['/register'])
+  }
+
   onLogin() {
     this.authService.login({ email: this.email, password: this.password }).subscribe(
       response => {

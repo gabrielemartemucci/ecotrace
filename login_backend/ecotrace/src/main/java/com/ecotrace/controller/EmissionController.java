@@ -23,8 +23,8 @@ public class EmissionController {
     private SuggestionService suggestionService;
 
     @PostMapping("/calculate")
-    public ResponseEntity<Map<String, Object>> calculateEmissions(@RequestBody CalculationRequest request) {
-        CalculationResponse calc = emissionService.calculateEmissions(request);
+    public ResponseEntity<Map<String, Object>> calculateEmissions(@RequestBody CalculationRequest request, @RequestParam Integer id) {
+        CalculationResponse calc = emissionService.calculateEmissions(request, id);
         List<SuggestionModel> suggestions = suggestionService.getSuggestions();
         Map<String, Object> response = new HashMap<>();
         response.put("response", calc);

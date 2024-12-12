@@ -1,9 +1,9 @@
 package com.ecotrace.repository;
 
-import com.ecotrace.model.Item;
+import com.ecotrace.model.FactorModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
-public interface TransportRepository extends JpaRepository<Item, Long> {
-    List<Item> findAllByType(String type);  // Recupera gli oggetti di tipo "transport"
+public interface TransportRepository extends JpaRepository<FactorModel, Long> {
+    List<FactorModel> findAllByType(String type);
 }

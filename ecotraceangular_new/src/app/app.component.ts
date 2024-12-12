@@ -12,11 +12,8 @@ export class AppComponent {
   title = 'eCOtrace';
   constructor(private router: Router) {}
 
-  navigateToLogin() {
-    this.router.navigate(['/']);
+  ngOnInit() {
+    this.router.navigate(['/login']);
   }
 
-  navigateToRegister() {
-    this.router.navigate(['/register']);
-  }
 }

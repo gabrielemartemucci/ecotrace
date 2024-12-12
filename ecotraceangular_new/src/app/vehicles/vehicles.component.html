@@ -1,14 +1,21 @@
-<!-- src/app/vehicles/vehicles.component.html -->
-<div>
-    <h2>Veicoli personali</h2>
-    <ul *ngIf="vehicles.length > 0; else noVehicles">
-      <li *ngFor="let vehicle of vehicles">{{ vehicle.model }} - {{ vehicle.year }}</li>
-    </ul>
-    <ng-template #noVehicles>
-      <p>Ecco i tuoi veicoli!</p>
-    </ng-template>
-    <button (click)="goToAddvehicle()">Aggiungi Veicolo</button>
-
-    <button (click)="goBack()">Torna indietro</button>
+<div class="vehicles-container">
+  <h2>I tuoi veicoli personali:</h2>
+  <div *ngIf="vehicles.length > 0; else noVehicles" class="vehicle-cards">
+    <div *ngFor="let vehicle of vehicles; let i = index" class="vehicle-card">
+      <h3>{{ vehicle.name || 'Nome non disponibile' }}</h3>
+      <p><strong>Tipo:</strong> {{ vehicle.type || 'N/A' }}</p>
+      <p><strong>Emissioni CO₂:</strong> {{ vehicle.co2_emission || 'N/A' }} g/km</p>
+      <button class="delete-btn" (click)="deleteVehicle(vehicle.id)">🗑</button>
+    </div>
   </div>
-  
+
+  <ng-template #noVehicles>
+    <p>Nessun veicolo disponibile.</p>
+  </ng-template>
+
+
+  <div class="button-group">
+    <button class="btn-action" (click)="goToAddvehicle()">Aggiungi Veicolo</button>
+    <button class="btn-action" (click)="goBack()">Indietro</button>
+  </div>
+</div>

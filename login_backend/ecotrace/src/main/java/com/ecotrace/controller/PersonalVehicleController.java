@@ -4,6 +4,7 @@ import com.ecotrace.model.PersonalVehicleModel;
 import com.ecotrace.model.UsersModel;
 import com.ecotrace.service.PersonalVehicleService;
 import com.ecotrace.service.UsersService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,16 @@ public class PersonalVehicleController {
             return ResponseEntity.status(201).body(savedVehicle);
         } catch (RuntimeException e) {
             return ResponseEntity.status(400).body("Utente non trovato");
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteVehicle(@PathVariable Long id) {
+        try {
+            vehicleService.deleteVehicleById(id);
+            return ResponseEntity.noContent().build();
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
         }
     }
 }

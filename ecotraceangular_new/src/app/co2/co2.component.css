@@ -9,14 +9,14 @@ body {
 .title {
   font-size: 50px;
   font-weight: bold;
-  color: #27ae60; /* Verde */
+  color: #3f7501; /* Verde */
 }
 
 .container {
   max-width: 475px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #4CAF50;
+  background-color: #3f7501;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -70,12 +70,12 @@ body {
   left: 4px;
   top: -2px;
   font-size: 18px;
-  color: #4CAF50;
+  color: #3f7501;
   font-weight: bold;
 }
 
 .message {
-  color: #ff6b6b;
+  color: #dc3545;
   font-size: 1rem;
   margin-left: 1.5rem;
 }
@@ -150,7 +150,7 @@ body {
 
 .btn-submit {
   background-color: #eeead9;
-  color: #4CAF50;
+  color: #3f7501;
   padding: 15px 30px;
   font-size: 1.2rem;
   font-weight: bold;

@@ -5,9 +5,11 @@ import com.ecotrace.dto.CalculationResponse;
 import com.ecotrace.model.CO2EmissionModel;
 import com.ecotrace.model.FactorModel;
 import com.ecotrace.model.PersonalVehicleModel;
+import com.ecotrace.model.UsersModel;
 import com.ecotrace.repository.CO2EmissionRepository;
 import com.ecotrace.repository.FactorRepository;
 import com.ecotrace.repository.PersonalVehicleRepository;
+import com.ecotrace.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +28,11 @@ public class EmissionService {
     @Autowired
     private CO2EmissionRepository CO2EmissionRepository;
 
-    public CalculationResponse calculateEmissions(CalculationRequest request) {
+    @Autowired
+    private UsersRepository userRepository;
+
+
+    public CalculationResponse calculateEmissions(CalculationRequest request, Integer id) {
         float totalEmissions = 0;
         try {
         // Calculate emissions from personal vehicles
@@ -56,9 +62,10 @@ public class EmissionService {
             totalEmissions += request.getEnergy() * energyFactor.getCo2_emission();
         }
 
+        UsersModel user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Utente non trovato"));
         // Save calculated emissions in the database
         CO2EmissionModel emission = new CO2EmissionModel();
-        emission.setUser_id(1L); // Usa l'ID reale dell'utente
+        emission.setUser(user);
         emission.setDate(LocalDate.now());
         emission.setTime(LocalTime.now());
         emission.setCo2_emission(totalEmissions);

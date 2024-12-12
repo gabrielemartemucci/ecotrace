@@ -47,6 +47,15 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/vehicles']);
   }
 
+  onLogout() {
+    // Rimuovi i dati dell'utente e dei veicoli dal localStorage
+    localStorage.removeItem('user');
+    localStorage.removeItem('vehicles');
+
+    // Reindirizza l'utente alla pagina di login
+    this.router.navigate(['/']);
+  }
+
   onCO2(): void {
     this.router.navigate(['/co2']);
   }

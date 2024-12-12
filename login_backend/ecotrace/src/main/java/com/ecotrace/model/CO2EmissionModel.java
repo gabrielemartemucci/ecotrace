@@ -12,10 +12,14 @@ public class CO2EmissionModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long user_id;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    private UsersModel user;
+
     private LocalDate date;
     private LocalTime time;
     private float co2_emission;
+
 
     public Long getId() {
         return id;
@@ -25,12 +29,12 @@ public class CO2EmissionModel {
         this.id = id;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public UsersModel getUser() {
+        return user;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setUser(UsersModel user) {
+        this.user = user;
     }
 
     public LocalDate getDate() {

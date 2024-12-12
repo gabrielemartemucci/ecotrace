@@ -1,36 +1,99 @@
-/* src/app/login/login.component.css e src/app/register/register.component.css */
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #6eff3c; /* Verde chiaro */
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.title {
+  font-size: 50px;
+  font-weight: bold;
+  color: #3f7501; /* Verde */
+}
+
+.logo {
+  width: 300px;
+  height: auto;
+}
 
 .container {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  h2 {
-    text-align: center;
-  }
-  
-  label {
-    display: block;
-    margin-top: 10px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    box-sizing: border-box;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 15px;
-    background-color: #3F7501;
-    color: #040506;
-    border: none;
-    cursor: pointer;
-  }
-  
+  max-width: 475px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #3f7501;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.input-field {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #eeead9;
+  font-size: 1rem;
+  color: #333;
+  background-color: #eeead9;
+  transition: border 0.3s, background-color 0.3s;
+  width: 100%;
+}
+
+.input-field:focus {
+  border-color: #eeead9;
+  background-color: #eeead9;
+}
+
+button {
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #eeead9;
+  color: white;
+  border: none;
+}
+
+button:hover {
+  background-color: #d3cd97;
+}
+
+footer-text {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-submit, .btn-register, .btn-login {
+  width: 100%;
+  padding: 10px;
+  background-color: #eeead9;
+  color: #3f7501;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 10px;
+  font-size: 1.2rem;
+}
+
+.btn-submit:hover, .btn-register:hover, .btn-login:hover {
+  background-color: #d3cd97;
+}
+
+.btn-register, .btn-login {
+  background-color: #eeead9;
+  color: #3f7501;
+}
+
+.btn-register:hover, .btn-login:hover {
+  background-color: #d3cd97;
+}

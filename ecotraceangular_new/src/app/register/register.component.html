@@ -1,20 +1,39 @@
-<!-- src/app/register/register.component.html -->
+<div align="center" class="section">
+  <img class="logo" alt="eCOtrace" src="assets/images/eCOtrace.png"/>
+<br>
+  <div class="title">
+    Registrazione
+  </div>
+  <br>
+</div>
+<div class="container">
+  <form (ngSubmit)="onRegister()">
+    <div class="field-group">
+      <label for="name">Nome:</label>
+      <input type="text" id="name" [(ngModel)]="name" name="name" required class="input-field">
+    </div>
 
-<div class="register-container">
-  <h2>Registrati</h2>
-  <form>
-    <label for="email">Email:</label>
-    <input type="email" id="email" [(ngModel)]="email" name="email" required>
+    <div class="field-group">
+      <label for="surname">Cognome:</label>
+      <input type="text" id="surname" [(ngModel)]="surname" name="surname" required class="input-field">
+    </div>
 
-    <label for="name">Nome:</label>
-    <input type="text" id="name" [(ngModel)]="name" name="name" required>
+    <div class="field-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" [(ngModel)]="email" name="email" required class="input-field">
+    </div>
 
-    <label for="surname">Cognome:</label>
-    <input type="text" id="surname" [(ngModel)]="surname" name="surname" required>
-
-    <label for="password">Password:</label>
-    <input type="password" id="password" [(ngModel)]="password" name="password" required>
-
-    <button type="submit" (click)="onRegister()">Registrati</button>
+    <div class="field-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" [(ngModel)]="password" name="password" required class="input-field">
+    </div>
+<br><br>
+    <button type="submit" class="btn-submit">Registrati!</button>
   </form>
+  <br><br><br><br>
+  <div class="footer-text">
+    <label>Hai già un account? </label>
+    <br><br>
+    <button type="button" (click)="onLogin()" class="btn-login">Login</button>
+  </div>
 </div>
