@@ -2,6 +2,22 @@
   <h1>Benvenuto, {{ user.name || 'utente' }}!</h1>
   <!--<p class="user-info">Email: {{ user.email || 'Non disponibile' }}</p>-->
 
+  <div class="charts-container">
+    <h3>Oggi hai prodotto {{ co2today }} g di CO<sub>2</sub><br>
+    Giorno peggiore: il giorno {{ maxday }} hai prodotto {{ co2maxday}} g di CO<sub>2</sub><br>
+    Giorno migliore: il giorno {{ minday }} hai prodotto {{ co2minday}} g di CO<sub>2</sub></h3>
+
+
+    <div>
+      <h2>Andamento CO<sub>2</sub> settimanale</h2>
+      <canvas id="7days-chart"></canvas>
+    </div>
+    <div>
+      <h2>Andamento CO<sub>2</sub> mensile</h2>
+      <canvas id="30days-chart"></canvas>
+    </div>
+  </div>
+
   <div class="button-group">
     <button class="btn-action" (click)="onProfile()">Profilo</button>
     <button class="btn-action" (click)="onCO2()">Calcola CO2</button>

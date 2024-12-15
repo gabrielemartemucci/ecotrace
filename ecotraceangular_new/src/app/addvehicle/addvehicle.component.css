@@ -1,32 +1,64 @@
-/* Aggiungi margine sopra e sotto ogni div per separare gli elementi */
+.form-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #3f7501;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+}
+
+h2 {
+  text-align: center;
+  font-size: 24px;
+  color: #eeead9;
+  margin-bottom: 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Margine inferiore per separare gli input */
 div {
-    margin-bottom: 20px;
-  }
-  
-  /* Allinea le etichette e i campi di input in modo che siano separati e ben allineati */
-  label {
-    display: inline-block;
-    width: 150px; /* Puoi regolare la larghezza delle etichette */
-    margin-right: 10px; /* Spazio tra etichetta e campo di input */
-  }
-  
-  input, select {
-    width: 200px; /* Regola la larghezza dei campi input */
-    padding: 8px; /* Spazio interno per i campi */
-    border: 1px solid #ccc; /* Bordo grigio chiaro per i campi */
-    border-radius: 4px; /* Bordo arrotondato */
-  }
-  
-  button {
-    margin-top: 20px; /* Spazio sopra il bottone */
-    padding: 10px 20px;
-    background-color: #4CAF50; /* Colore di sfondo verde */
-    color: white; /* Colore del testo bianco */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #45a049; /* Colore verde scuro al passaggio del mouse */
-  }  
+  margin-bottom: 20px;
+}
+
+/* Stile per le etichette */
+label {
+  display: inline-block;
+  width: 150px;
+  margin-right: 10px;
+  font-size: 16px;
+  color: #eeead9;
+}
+
+/* Stile per gli input e select */
+input, select {
+  width: 100%;
+  max-width: 300px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #eeead9;
+  background-color: #eeead9;
+  color: #333;
+}
+
+.button-group {
+  margin-top: 20px;
+}
+
+.btn-action {
+  padding: 10px 20px;
+  background-color: #eeead9;
+  color: #3f7501;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.btn-action:hover {
+  background-color: #d3cd97;
+}

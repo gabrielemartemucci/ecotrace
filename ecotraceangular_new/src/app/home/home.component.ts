@@ -1,7 +1,11 @@
 // src/app/home/home.component.ts
 
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';  // Importa Router per la navigazione
+import { Router } from '@angular/router';
+import { DataService } from '../dataservice';
+import { Chart } from 'chart.js/auto';
+import { subDays, format } from 'date-fns';
+
 
 @Component({
   selector: 'app-home',
@@ -11,8 +15,17 @@ import { Router } from '@angular/router';  // Importa Router per la navigazione
 export class HomeComponent implements OnInit {
   user: any;
   vehicles: any;
+  weeklyChart: any;
+  monthlyChart: any;
+  dailyData7Days: any = [];
+  dailyData30Days: any =[];
+  co2today: any;
+  co2maxday: any;
+  co2minday: any;
+  maxday: any;
+  minday: any;
 
-  constructor(private router: Router) {}  // Inietta Router per la navigazione
+  constructor(private router: Router, private dataService: DataService) {}  // Inietta Router per la navigazione
 
   ngOnInit() {
     // Recupera i dati dell'utente dal localStorage
@@ -23,28 +36,22 @@ export class HomeComponent implements OnInit {
     this.vehicles = JSON.parse(localStorage.getItem('vehicles') || '[]');
     console.log('Ciao');
     console.log('Dati veicoli recuperati:', this.vehicles);
-
+    this.loadWeeklyChart(this.user.id);
+    this.loadMonthlyChart(this.user.id);
+    this.loadDailyData7Days(this.user.id);
+    this.loadDailyData30Days(this.user.id);
+    this.getCo2Today(this.user.id);
+    this.getCo2MaxDay(this.user.id);
+    this.getCo2MinDay(this.user.id);
   }
 
-  // Metodo vuoto per la funzione di registrazione attività
-  onRegisterActivity() {
-    // Per ora non fa nulla
-  }
-
-  // Metodo vuoto per la navigazione al profilo
   onProfile() {
-    //this.user = JSON.parse(localStorage.getItem('user') || '{}');
-   // console.log(this.user); // Aggiungi un log per vedere cosa contiene l'oggetto user
     console.log('Dati utente per navigazione:', this.user);
     if (this.user && this.user.name && this.user.email) {
       this.router.navigate(['/profile']);
     } else {
-      this.router.navigate(['/']); // Reindirizza al login se l'utente non è autenticato
+      this.router.navigate(['/']);
     }
-  }
-//metodo per la navigazione nei veicoli
-  onVehicles() {
-    this.router.navigate(['/vehicles']);
   }
 
   onLogout() {
@@ -58,5 +65,244 @@ export class HomeComponent implements OnInit {
 
   onCO2(): void {
     this.router.navigate(['/co2']);
+  }
+
+  loadWeeklyChart(user_id: number): void {
+    this.dataService.getWeeklyCo2Emission(user_id).subscribe((data: any) => {
+      const labels = data.map((item: any) => `Settimana ${item.week} (${item.year})`);
+      const values = data.map((item: any) => item.total);
+      this.weeklyChart = new Chart('weeklyChart', {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [{
+            label: 'Emissioni settimanali di CO2',
+            data: values,
+            borderColor: '#eeead9',
+            backgroundColor: '#eeead9',
+            fill: true
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top',
+              labels: {
+                color: '#eeead9',
+                font: {
+                  size: 14,
+                  weight: 'bold',
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              ticks: {
+                color: '#eeead9'
+              },
+              grid: {
+                color: '#eeead9'
+              },
+            },
+            y: {
+              ticks: {
+                color: '#eeead9'
+              },
+              grid: {
+                color: '#eeead9'
+              },
+            }
+          }
+        }
+      });
+      });
+    }
+
+    loadMonthlyChart(user_id: number): void {
+      this.dataService.getMonthlyCo2Emission(user_id).subscribe((data: any) => {
+        const labels = data.map((item: any) => `${item.month}/${item.year}`);
+        const values = data.map((item: any) => item.total);
+
+        this.monthlyChart = new Chart('monthlyChart', {
+          type: 'bar',
+          data: {
+            labels,
+            datasets: [{
+              label: 'Emissioni mensili di CO2',
+              data: values,
+              backgroundColor: '#eeead9',
+              borderColor: '#eeead9',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                display: true,
+                position: 'top',
+                labels: {
+                  color: '#eeead9',
+                  font: {
+                    size: 14,
+                    weight: 'bold',
+                  }
+                }
+              }
+            },
+            scales: {
+              x: {
+                ticks: {
+                  color: '#eeead9'
+                },
+                grid: {
+                  color: '#eeead9'
+                },
+              },
+              y: {
+                ticks: {
+                  color: '#eeead9'
+                },
+                grid: {
+                  color: '#eeead9'
+                },
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      });
+    }
+
+  loadDailyData7Days(user_id: number): void {
+    this.dataService.getDailyCo2EmissionLast7Days(user_id).subscribe((data: any) => {
+      const allDates = this.generateDateRange(7);
+      this.dailyData7Days = this.mapDataToDates(allDates, data);
+      this.createChart(this.dailyData7Days, '7days');
+    });
+  }
+
+  loadDailyData30Days(user_id: number): void {
+    this.dataService.getDailyCo2EmissionLast30Days(user_id).subscribe((data: any) => {
+      const allDates = this.generateDateRange(30);
+      this.dailyData30Days = this.mapDataToDates(allDates, data);
+      this.createChart(this.dailyData30Days, '30days');
+    });
+  }
+
+  generateDateRange(days: number): string[] {
+    const today = new Date();
+    const dates: string[] = [];
+    for (let i = 0; i < days; i++) {
+      const day = subDays(today, i);
+      dates.push(format(day, 'yyyy-MM-dd'));
+    }
+    return dates.reverse();
+  }
+
+  mapDataToDates(dates: string[], data: any[]): any[] {
+    const dataMap = new Map<string, number>();
+    data.forEach(entry => {
+      dataMap.set(entry.date, entry.total !== null ? entry.total : 0);
+    });
+
+    return dates.map(date => ({
+      date: date,
+      total: dataMap.get(date) ?? 0
+    }));
+  }
+
+  createChart(data: any, chartType: string): void {
+    const labels = data.map((entry: any) => entry.date);
+    const values = data.map((entry: any) => entry.total !== null ? entry.total : 0);
+
+    const ctx = document.getElementById(`${chartType}-chart`) as HTMLCanvasElement;
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Emissioni CO2 giornaliere',
+          data: values,
+          fill: false,
+          backgroundColor: '#eeead9',
+          borderColor: '#eeead9',
+          tension: 0.1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+            labels: {
+              color: '#eeead9',
+              font: {
+                size: 14,
+                weight: 'bold',
+              }
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: (tooltipItem: any) => {
+                return `CO2: ${tooltipItem.raw} g`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: {
+              color: '#eeead9'
+            },
+            grid: {
+              color: '#eeead9'
+            },
+            title: {
+              display: true,
+              text: 'Data',
+              color: '#eeead9'
+            }
+          },
+          y: {
+            ticks: {
+              color: '#eeead9'
+            },
+            grid: {
+              color: '#eeead9'
+            },
+            title: {
+              display: true,
+              text: 'Emissioni CO2 (g)',
+              color: '#eeead9'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  getCo2Today(user_id: number): void {
+    this.dataService.getCo2Today(user_id).subscribe(data => {
+      this.co2today = data;
+    });
+  }
+
+  getCo2MaxDay(user_id: number): void {
+    this.dataService.getCo2MaxDay(user_id).subscribe(data => {
+      this.maxday = data.date;
+      this.co2maxday = data.emission;
+    });
+  }
+
+  getCo2MinDay(user_id: number): void {
+    this.dataService.getCo2MinDay(user_id).subscribe(data => {
+      this.minday = data.date;
+      this.co2minday = data.emission;
+    });
   }
 }

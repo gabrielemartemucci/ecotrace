@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import {FormsModule} from "@angular/forms";
 import {EmissionService}  from "../emissionservice";
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 
 
@@ -30,7 +31,7 @@ export class Co2Component {
   selectedTransports: { transportId: number | null, kilometers: number | null} [] = [];
   selectedFood: { foodId: number | null, quantity: number | null} [] = [];
 
-  constructor(private factorService: FactorsService, private emissionService: EmissionService) {}
+  constructor(private factorService: FactorsService, private emissionService: EmissionService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadTransports();
@@ -169,5 +170,9 @@ export class Co2Component {
         confirmButtonColor: '#4CAF50'
       });
     });
+  }
+
+  goBack() {
+    this.router.navigate(['/home']);
   }
 }

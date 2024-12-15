@@ -22,7 +22,7 @@ public class PersonalVehicleController {
 
     @PostMapping("/add")
     public ResponseEntity<?> addVehicle(@RequestBody PersonalVehicleModel vehicle, @RequestParam Integer id) {
-        System.out.println("Email ricevuta nella richiesta: " + id); // Log dell'email ricevuta
+        System.out.println("Id ricevuta nella richiesta: " + id); // Log dell'email ricevuta
         try {
             Map<String, Object> userAndVehicles = userService.getUserAndVehicles(id);
             UsersModel user = (UsersModel) ((Map<?, ?>) userAndVehicles).get("user");
@@ -43,4 +43,5 @@ public class PersonalVehicleController {
             return ResponseEntity.notFound().build();
         }
     }
+
 }

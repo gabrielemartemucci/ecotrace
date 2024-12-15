@@ -1,26 +1,25 @@
-<div>
-    <h2>Aggiungi un veicolo</h2>
-    <form (ngSubmit)="submitForm()">
-      <div>
-        <label for="vehicleName">Nome veicolo:</label>
-        <input type="text" id="vehicleName" [(ngModel)]="vehicleName" name="vehicleName" required>
-      </div>
-  
-      <div>
+<div class="form-container">
+  <h2>Aggiungi un veicolo</h2>
+  <form #vehicleForm="ngForm" (ngSubmit)="submitForm(vehicleForm)">
+    <div>
+      <label for="vehicleName">Nome veicolo:</label>
+      <input type="text" id="vehicleName" [(ngModel)]="vehicleName" name="vehicleName" required />
+    </div>
 
+    <div>
+      <label for="vehicleType">Tipologia:</label>
+      <select id="vehicleType" [(ngModel)]="vehicleType" name="vehicleType" required>
+        <option *ngFor="let type of vehicleTypes" [value]="type">{{ type }}</option>
+      </select>
+    </div>
 
-        <label for="vehicleType">Tipologia:   </label>
-        <select id="vehicleType" [(ngModel)]="vehicleType" name="vehicleType" required>
-          <option *ngFor="let type of vehicleTypes" [value]="type">{{ type }}</option>
-        </select>
-      </div>
-  
-      <div>
-        <label for="co2Emission">Emissione CO2:</label>
-        <input type="number" id="co2Emission" [(ngModel)]="co2Emission" name="co2Emission" required>
-      </div>
-  
-      <button type="submit">Conferma</button>
-
-    </form>
-  </div>
+    <div>
+      <label for="co2Emission">Emissione CO2:</label>
+      <input type="number" id="co2Emission" [(ngModel)]="co2Emission" name="co2Emission" required />
+    </div>
+<div class="button-group">
+    <button class="btn-action" type="submit">Inserisci</button>
+    <button class="btn-action" (click)="goBack()">Indietro</button>
+</div>
+  </form>
+</div>

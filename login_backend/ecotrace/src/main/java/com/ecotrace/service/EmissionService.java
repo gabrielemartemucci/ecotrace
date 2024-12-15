@@ -77,4 +77,5 @@ public class EmissionService {
             throw new RuntimeException("Errore nel calcolo delle emissioni: " + e.getMessage(), e);
         }
     }
+
 }
