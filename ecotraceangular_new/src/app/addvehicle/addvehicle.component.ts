@@ -12,7 +12,7 @@ export class AddvehicleComponent {
 
   vehicleName: string = '';
   vehicleType: string = '';
-  co2Emission: number = 0; //0 è il valore iniziale
+  co2Emission: number = 0;
   user: any;
 
   vehicleTypes: string[] = ['Auto a benzina', 'Auto a metano', 'Auto a GPL', 'Auto a diesel', 'Auto elettrica', 'Monopattino elettrico', 'Bicicletta elettrica', 'Monopattino non elettrico', 'Bicicletta non elettrica', 'Ciclomotore', 'Motociclo', 'Veicolo commerciale leggero', 'Camion'];
@@ -20,7 +20,6 @@ export class AddvehicleComponent {
   constructor(private vehicleService: VehicleService, private router: Router) {}
 
   ngOnInit() {
-    // Recupera i dati dell'utente dal localStorage
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
     console.log('Dati utente recuperati:', this.user);
   }
@@ -32,6 +31,14 @@ export class AddvehicleComponent {
     this.vehicleService.addVehicle({ name: this.vehicleName, type: this.vehicleType, co2_emission: this.co2Emission}, this.user.id).subscribe(
       response => {
         console.log('Veicolo inserito con successo', response);
+        const vehicles = JSON.parse(localStorage.getItem('vehicles') || '[]');
+        vehicles.push({
+          id: response.id,
+          name: this.vehicleName,
+          type: this.vehicleType,
+          co2_emission: this.co2Emission
+        });
+        localStorage.setItem('vehicles', JSON.stringify(vehicles));
         Swal.fire({
           title: 'Veicolo inserito con successo!',
           html: `

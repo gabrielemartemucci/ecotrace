@@ -53,7 +53,6 @@ public class UsersService {
         if (user.isPresent()) {
             List<PersonalVehicleModel> vehicles = personalVehicleRepository.findByUserId((long) user.get().getId());
 
-            // Creazione della mappa dei risultati
             Map<String, Object> result = new HashMap<>();
             result.put("user", user.get());
             result.put("vehicles", vehicles);

@@ -2,8 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './authservice';
-//import { HttpClientTestingModule } from '@angular/common/http/testing';
-//import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -20,7 +18,7 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'ecotraceangular_new' title`, () => {
+  it(`should have the 'eCOtrace' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('eCOtrace');

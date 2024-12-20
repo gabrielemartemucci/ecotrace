@@ -11,7 +11,6 @@ public class EmissionDay {
         this.emission = emission;
     }
 
-    // Getter e Setter
     public Date getDate() {
         return datem;
     }

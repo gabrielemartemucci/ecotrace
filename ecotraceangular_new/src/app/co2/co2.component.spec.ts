@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Co2Component } from './co2.component';
-import { FactorsService } from '../factorsservice';
 
 
 describe('CO2Component', () => {

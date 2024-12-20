@@ -1,5 +1,3 @@
-// src/app/login/login.component.ts
-
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';  // Importa Router per il reindirizzamento
 import { AuthService } from '../authservice';  // Importa il servizio di autenticazione
@@ -12,8 +10,6 @@ import { AuthService } from '../authservice';  // Importa il servizio di autenti
 export class LoginComponent {
   email: string = '';
   password: string = '';
-
-  // Inietta sia il servizio di autenticazione che il router per navigare
   constructor(private authService: AuthService, private router: Router) {}
 
   onRegister() {
@@ -24,15 +20,8 @@ export class LoginComponent {
     this.authService.login({ email: this.email, password: this.password }).subscribe(
       response => {
         console.log('Login con successo', response);
-
-        // Salva i dati dell'utente e i veicoli nel localStorage
         localStorage.setItem('user', JSON.stringify(response.user));
         localStorage.setItem('vehicles', JSON.stringify(response.vehicles));
-
-        // Messaggio di successo
-        alert(response.message || 'Login riuscito');
-
-        // Reindirizza l'utente alla home dopo il login
         this.router.navigate(['/home']);
       },
       error => {

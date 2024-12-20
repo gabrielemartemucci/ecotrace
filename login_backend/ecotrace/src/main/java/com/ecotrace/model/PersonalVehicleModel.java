@@ -3,7 +3,6 @@ package com.ecotrace.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 
-import java.util.Objects;
 
 @Entity
 @Table(name = "personal_vehicles")

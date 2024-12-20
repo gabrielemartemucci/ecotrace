@@ -1,6 +1,6 @@
 body {
   font-family: 'Montserrat', sans-serif;
-  background-color: #6eff3c; /* Verde chiaro */
+  background-color: #6eff3c;
   color: #333;
   margin: 0;
   padding: 0;
@@ -9,7 +9,7 @@ body {
 .title {
   font-size: 50px;
   font-weight: bold;
-  color: #3f7501; /* Verde */
+  color: #3f7501;
 }
 
 .logo {

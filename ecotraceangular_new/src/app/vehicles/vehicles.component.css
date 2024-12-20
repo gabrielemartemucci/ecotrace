@@ -42,26 +42,26 @@ h2 {
 .vehicle-cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px; /* Spaziatura tra le schede */
+  gap: 16px;
   justify-content: center;
   font-family: 'Montserrat', sans-serif;
 
 }
 
 .vehicle-card {
-  background-color: #eeead9; /* Colore di sfondo chiaro */
-  border: 1px solid #e0e0e0; /* Leggero bordo */
-  border-radius: 8px; /* Angoli arrotondati */
+  background-color: #eeead9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
   padding: 16px;
-  width: 280px; /* Dimensione standard delle schede */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombra per effetto tridimensionale */
+  width: 280px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   font-family: 'Montserrat', sans-serif;
 }
 
 .vehicle-card:hover {
-  transform: translateY(-4px); /* Leggero sollevamento al passaggio del mouse */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Ombra più pronunciata */
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .vehicle-card h3 {
@@ -86,8 +86,8 @@ h2 {
 .delete-btn {
   margin-top: 12px;
   padding: 8px 16px;
-  background-color: #dc3545; /* Colore rosso per il pulsante */
-  color: #fff; /* Testo bianco */
+  background-color: #dc3545;
+  color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -97,5 +97,5 @@ h2 {
 }
 
 .delete-btn:hover {
-  background-color: #e74c3c; /* Colore più scuro al passaggio del mouse */
+  background-color: #e74c3c;
 }

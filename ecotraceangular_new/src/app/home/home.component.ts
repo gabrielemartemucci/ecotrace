@@ -1,5 +1,3 @@
-// src/app/home/home.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../dataservice';
@@ -36,8 +34,6 @@ export class HomeComponent implements OnInit {
     this.vehicles = JSON.parse(localStorage.getItem('vehicles') || '[]');
     console.log('Ciao');
     console.log('Dati veicoli recuperati:', this.vehicles);
-    this.loadWeeklyChart(this.user.id);
-    this.loadMonthlyChart(this.user.id);
     this.loadDailyData7Days(this.user.id);
     this.loadDailyData30Days(this.user.id);
     this.getCo2Today(this.user.id);
@@ -66,116 +62,6 @@ export class HomeComponent implements OnInit {
   onCO2(): void {
     this.router.navigate(['/co2']);
   }
-
-  loadWeeklyChart(user_id: number): void {
-    this.dataService.getWeeklyCo2Emission(user_id).subscribe((data: any) => {
-      const labels = data.map((item: any) => `Settimana ${item.week} (${item.year})`);
-      const values = data.map((item: any) => item.total);
-      this.weeklyChart = new Chart('weeklyChart', {
-        type: 'line',
-        data: {
-          labels,
-          datasets: [{
-            label: 'Emissioni settimanali di CO2',
-            data: values,
-            borderColor: '#eeead9',
-            backgroundColor: '#eeead9',
-            fill: true
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              display: true,
-              position: 'top',
-              labels: {
-                color: '#eeead9',
-                font: {
-                  size: 14,
-                  weight: 'bold',
-                }
-              }
-            }
-          },
-          scales: {
-            x: {
-              ticks: {
-                color: '#eeead9'
-              },
-              grid: {
-                color: '#eeead9'
-              },
-            },
-            y: {
-              ticks: {
-                color: '#eeead9'
-              },
-              grid: {
-                color: '#eeead9'
-              },
-            }
-          }
-        }
-      });
-      });
-    }
-
-    loadMonthlyChart(user_id: number): void {
-      this.dataService.getMonthlyCo2Emission(user_id).subscribe((data: any) => {
-        const labels = data.map((item: any) => `${item.month}/${item.year}`);
-        const values = data.map((item: any) => item.total);
-
-        this.monthlyChart = new Chart('monthlyChart', {
-          type: 'bar',
-          data: {
-            labels,
-            datasets: [{
-              label: 'Emissioni mensili di CO2',
-              data: values,
-              backgroundColor: '#eeead9',
-              borderColor: '#eeead9',
-              borderWidth: 1
-            }]
-          },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: {
-                display: true,
-                position: 'top',
-                labels: {
-                  color: '#eeead9',
-                  font: {
-                    size: 14,
-                    weight: 'bold',
-                  }
-                }
-              }
-            },
-            scales: {
-              x: {
-                ticks: {
-                  color: '#eeead9'
-                },
-                grid: {
-                  color: '#eeead9'
-                },
-              },
-              y: {
-                ticks: {
-                  color: '#eeead9'
-                },
-                grid: {
-                  color: '#eeead9'
-                },
-                beginAtZero: true
-              }
-            }
-          }
-        });
-      });
-    }
 
   loadDailyData7Days(user_id: number): void {
     this.dataService.getDailyCo2EmissionLast7Days(user_id).subscribe((data: any) => {

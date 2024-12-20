@@ -4,7 +4,6 @@
   </div>
 </div>
 <div class="container">
-  <!-- Sezione Veicoli Personali -->
   <div class="section">
     <div class="checkbox-group">
       <input type="checkbox" id="personalVehicles" [(ngModel)]="personalVehiclesChecked" [disabled]="!hasPersonalVehicles" />
@@ -24,7 +23,6 @@
     </div>
   </div>
 
-  <!-- Sezione Trasporti -->
   <div class="section">
     <div class="checkbox-group">
       <input type="checkbox" id="transport" [(ngModel)]="transportChecked" />
@@ -43,7 +41,6 @@
     </div>
   </div>
 
-  <!-- Sezione Energia -->
   <div class="section">
     <div class="checkbox-group">
       <input type="checkbox" id="energy" [(ngModel)]="energyChecked" />
@@ -55,7 +52,6 @@
     </div>
   </div>
 
-  <!-- Sezione Cibo -->
   <div class="section">
     <div class="checkbox-group">
       <input type="checkbox" id="food" [(ngModel)]="foodChecked" />
@@ -74,7 +70,6 @@
     </div>
   </div>
 
-  <!-- Pulsante Invia -->
   <button class="btn-submit" (click)="submitData()">Calcola la CO2!</button>
   <button class="btn-action" (click)="goBack()">Indietro</button>
 </div>

@@ -1,9 +1,7 @@
-// src/app/app.module.ts
-
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms'; // Importa FormsModule
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -14,15 +12,14 @@ import { VehiclesComponent } from './vehicles/vehicles.component';
 import {Co2Component} from "./co2/co2.component";
 import {AddvehicleComponent} from "./addvehicle/addvehicle.component";
 
-// Definisci le rotte
 const routes: Routes = [
-  { path: '', component: LoginComponent },  // La rotta principale che porta al login
-  { path: 'register', component: RegisterComponent },  // La rotta per la registrazione
-  { path: 'home', component: HomeComponent },  // Aggiungi la rotta per la home
-  { path: 'profile', component: UserProfileComponent }, // Profilo dell'utente
-  { path: 'vehicles', component: VehiclesComponent },  // Aggiungi la rotta per i veicoli
+  { path: '', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'profile', component: UserProfileComponent },
+  { path: 'vehicles', component: VehiclesComponent },
   { path: 'co2', component: Co2Component },
-  { path: 'addvehicle', component: AddvehicleComponent }, //rotta per aggiungere il veicolo
+  { path: 'addvehicle', component: AddvehicleComponent },
 
   { path: '**', redirectTo: localStorage.getItem('user') ? '/home' : '' },
 
@@ -36,13 +33,13 @@ const routes: Routes = [
     RegisterComponent,
     HomeComponent,
     UserProfileComponent,
-    VehiclesComponent, // Assicurati che HomeComponent sia dichiarato
+    VehiclesComponent,
     AddvehicleComponent,
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes), // Configura il routing
-    FormsModule, // Configura FormsModule per ngModel
+    RouterModule.forRoot(routes),
+    FormsModule,
     HttpClientModule
   ],
   providers: [],

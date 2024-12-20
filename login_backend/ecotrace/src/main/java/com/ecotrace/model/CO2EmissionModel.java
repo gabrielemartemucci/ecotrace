@@ -2,7 +2,6 @@ package com.ecotrace.model;
 
 import jakarta.persistence.*;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 

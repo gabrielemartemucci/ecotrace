@@ -3,7 +3,6 @@ import com.ecotrace.model.PersonalVehicleModel;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import com.ecotrace.repository.PersonalVehicleRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
 public class PersonalVehicleService {

@@ -1,8 +1,6 @@
-// src/app/user-profile/user-profile.component.ts
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-//import { environment } from 'src/environments/environment'; //non so cosa sia
 
 @Component({
   selector: 'app-user-profile',
@@ -15,10 +13,9 @@ export class UserProfileComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
-    // Recupera i dati dell'utente dal localStorage
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
   }
-  
+
 
   goToVehicles() {
     this.router.navigate(['/vehicles']);

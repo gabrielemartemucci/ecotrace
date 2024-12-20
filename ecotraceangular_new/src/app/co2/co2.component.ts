@@ -146,7 +146,7 @@ export class Co2Component {
         if (transportId == 23)
           message += response.suggestions[9].suggestions + '<br>';
       }
-      if ( this.energyChecked ? Number(this.energyConsumption) : 0 >= 8)
+      if ( this.energyChecked ? (Number(this.energyConsumption) >= 8) : false )
         message += response.suggestions[10].suggestion + '<br>';
       for (const food of this.selectedFood) {
         const foodId = food.foodId;
@@ -158,7 +158,6 @@ export class Co2Component {
         if (foodId == 45)
           message += response.suggestions[13].suggestion + '<br>';
       }
-      //alert(`Totale emissioni calcolate: ${response.response.totalEmissions} g CO2. \n\n${message}`)
       Swal.fire({
         title: 'Totale emissioni calcolate',
         html: `
@@ -169,6 +168,7 @@ export class Co2Component {
         confirmButtonText: 'OK',
         confirmButtonColor: '#4CAF50'
       });
+      this.router.navigate(['/home']);
     });
   }
 

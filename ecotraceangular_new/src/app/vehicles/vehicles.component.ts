@@ -1,5 +1,3 @@
-// src/app/vehicles/vehicles.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {HttpClient} from "@angular/common/http";  // Importa Router per il reindirizzamento
@@ -19,7 +17,6 @@ export class VehiclesComponent implements OnInit {
 
 
   ngOnInit() {
-    // Recupera i veicoli dal localStorage
     this.vehicles = JSON.parse(localStorage.getItem('vehicles') || '[]');
   }
 
@@ -28,7 +25,7 @@ export class VehiclesComponent implements OnInit {
   }
 
   goBack() {
-    window.history.back();  // Torna alla pagina precedente
+    this.router.navigate(['/profile']);
   }
 
   deleteVehicle(vehicle_id: number): void {

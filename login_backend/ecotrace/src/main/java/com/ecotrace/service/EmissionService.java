@@ -35,35 +35,30 @@ public class EmissionService {
     public CalculationResponse calculateEmissions(CalculationRequest request, Integer id) {
         float totalEmissions = 0;
         try {
-        // Calculate emissions from personal vehicles
         for (CalculationRequest.PersonalVehicle vehicle : request.getPersonalVehicles()) {
             PersonalVehicleModel personalVehicle = personalVehicleRepository.findById(vehicle.getVehicleId())
                     .orElseThrow(() -> new RuntimeException("Vehicle not found"));
             totalEmissions += vehicle.getKilometers() * personalVehicle.getCo2_emission();
         }
 
-        // Calculate emissions from transports
         for (CalculationRequest.Transport transport : request.getTransports()) {
             FactorModel factor = factorRepository.findById(transport.getTransportId())
                     .orElseThrow(() -> new RuntimeException("Transport not found"));
             totalEmissions += transport.getKilometers() * factor.getCo2_emission();
         }
 
-        // Calculate emissions from foods
         for (CalculationRequest.Food food : request.getFood()) {
             FactorModel factor = factorRepository.findById(food.getFoodId())
                     .orElseThrow(() -> new RuntimeException("Food not found"));
             totalEmissions += food.getQuantity() * factor.getCo2_emission();
         }
 
-        // Calculate emissions from energy
         if (request.getEnergy() != null) {
             FactorModel energyFactor = factorRepository.findByType("energia").get(0);
             totalEmissions += request.getEnergy() * energyFactor.getCo2_emission();
         }
 
         UsersModel user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Utente non trovato"));
-        // Save calculated emissions in the database
         CO2EmissionModel emission = new CO2EmissionModel();
         emission.setUser(user);
         emission.setDate(LocalDate.now());
@@ -73,7 +68,7 @@ public class EmissionService {
 
         return new CalculationResponse(totalEmissions);
         } catch (Exception e) {
-            e.printStackTrace();  // Stampa la traccia dell'errore per analizzare il problema
+            e.printStackTrace();
             throw new RuntimeException("Errore nel calcolo delle emissioni: " + e.getMessage(), e);
         }
     }
